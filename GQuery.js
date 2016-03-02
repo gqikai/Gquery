@@ -93,6 +93,7 @@ function myAddEvent(obj, event, func){
         obj.addEventListener(event,func);
     }
 }
+
 function myGetStyle(obj, attr)
 {
     if(obj.currentStyle)
