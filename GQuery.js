@@ -41,6 +41,58 @@ function GQuery(vArg){
 }
 
 
+GQuery.prototype.find=function (str)
+{
+    var i=0;
+    var aResult=[];
+
+    for(i=0;i<this.elements.length;i++)
+    {
+        switch(str.charAt(0))
+        {
+            case '.':	//class
+                var aEle=getByClass(this.elements[i], str.substring(1));
+
+                aResult=aResult.concat(aEle);
+                break;
+            default:	//标签
+                var aEle=this.elements[i].getElementsByTagName(str);
+
+                //aResult=aResult.concat(aEle);
+                appendArr(aResult, aEle);
+        }
+    }
+
+    var newVquery=$();
+
+    newVquery.elements=aResult;
+
+    return newVquery;
+};
+
+function getIndex(obj)
+{
+    var aBrother=obj.parentNode.children;
+    var i=0;
+
+    for(i=0;i<aBrother.length;i++)
+    {
+        if(aBrother[i]==obj)
+        {
+            return i;
+        }
+    }
+}
+
+GQuery.prototype.index=function ()
+{
+    return getIndex(this.elements[0]);
+};
+
+function $(vArg)
+{
+    return new VQuery(vArg);
+}
 
 
 GQuery.prototype.eq = function(i){
@@ -156,4 +208,14 @@ function myGetStyle(obj, attr)
 
 function $(vArg){
     return new GQuery(vArg);
+}
+
+function appendArr(arr1, arr2)
+{
+    var i=0;
+
+    for(i=0;i<arr2.length;i++)
+    {
+        arr1.push(arr2[i]);
+    }
 }
