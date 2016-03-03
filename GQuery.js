@@ -38,8 +38,31 @@ function GQuery(vArg){
     }
 }
 
-function $(vArg){
-    return new GQuery(vArg);
+GQuery.prototype.toggle = function(){
+
+}
+
+GQuery.prototype.show = function(){
+    var i  = 0;
+
+    for(i = 0; i < this.elements.length; i ++){
+        if(this.elements[i].getAttribute("display-bak")){
+            this.elements[i].style.display = this.elements[i].getAttribute("display-block");
+        }else{
+            this.elements[i].style.display = "none";
+        }
+    }
+}
+
+GQuery.prototype.hide = function(){
+    var i  = 0;
+
+    for(i = 0; i < this.elements.length; i ++){
+
+        var display = this.elements[i].getAttribute("diaplay");
+        this.elements[i].setAttribute("display-bak",display);
+        this.elements[i].style.display = "none";
+    }
 }
 
 GQuery.prototype.click = function(fn){
@@ -84,6 +107,7 @@ GQuery.prototype.attr = function(vArg){
         }
     }
 }
+
 function myAddEvent(obj, event, func){
     if(obj.attachEvent){
         obj.attachEvent('on' + event, function(){
@@ -104,4 +128,8 @@ function myGetStyle(obj, attr)
     {
         return getComputedStyle(obj, false)[attr];
     }
+}
+
+function $(vArg){
+    return new GQuery(vArg);
 }
