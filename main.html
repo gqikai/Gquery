@@ -6,17 +6,17 @@
     <script type="text/javascript" src="GQuery.js"></script><title>Title</title>
     <script>
         $(function(){
-            $("#butt").css("color","red");
-            alert($("#butt").css("color"));
+            $('input').eq(1).css('color',"red");
         });
+
     </script>
 </head>
 
 <body>
-<input class="but" type="button" id="butt" value="helllo"/>
-<input class="but" type="button"   value="helllo"/>
-<input class="but" type="button"  value="helllo"/>
-<input class="but" type="button"  value="helllo"/>
+<input class="but" type="button"  id="butt"  value="0"/>
+<input class="but" type="button"  id="butt1" value="1"/>
+<input class="but" type="button"  id='butt2' value="2"/>
+<input class="but" type="button"  id='butt3' value="3"/>
 
 
 </body>

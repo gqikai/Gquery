@@ -27,8 +27,10 @@ function GQuery(vArg){
                     }
                 }
             }
+            break;
         }
         case 'object':{
+            this.elements.push(vArg);
             break;
         }
         case 'function':{
@@ -38,7 +40,29 @@ function GQuery(vArg){
     }
 }
 
+
+
+
+GQuery.prototype.eq = function(i){
+    return new GQuery(this.elements[i]);
+}
+
 GQuery.prototype.toggle = function(){
+    var _arguments = arguments;
+
+
+    var i  = 0;
+    for(i = 0; i < this.elements.length; i ++){
+        addToggle(this.elements[i]);
+    }
+
+    function addToggle(obj){
+        var count = 0;
+
+        myAddEvent(obj,"click",function(){
+            _arguments[count++%_arguments.length].call(obj);
+        });
+    }
 
 }
 
